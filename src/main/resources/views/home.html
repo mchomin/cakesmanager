@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<h1>Cakes Manager</h1>
+
+<h2 th:if="${security}">username: <span th:text="${security.name}"> </h2>
+<h2 th:unless="${security}">username: Anonymous</h2>
+
+<nav>
+    <ul>
+        <li th:unless="${security}"><a href="/oauth/login/github">Log in with GitHub</a></li>
+        <li th:if="${security}"><a href="/swagger-ui/index.html">View Swagger</a></li>
+    </ul>
+</nav>
+</body>
+</html>

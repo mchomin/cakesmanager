@@ -1,0 +1,52 @@
+micronaut:
+  application:
+    name: cakesmanager
+  http:
+    services:
+      githubv3:
+        url: "https://api.github.com"
+  security:
+    authentication: cookie
+    intercept-url-map:
+      - pattern: /swagger/**
+        access:
+          - isAnonymous()
+      - pattern: /swagger-ui/**
+        access:
+          - isAnonymous()
+      - pattern: /v3/api-docs/**
+        access:
+          - isAnonymous()
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: thisShouldBeLoadedFromASystemProperty
+    oauth2:
+      login:
+        enabled: true
+      clients:
+        github:
+          # those secrets should not be pushed to repo but loaded from a system property instead
+          client-id: Ov23lipoKlePqZm6LAq7
+          client-secret: ebfbf3317c79f196911fb9487ea5cdfbb9349ff3
+          scopes:
+            - user:email
+            - read:user
+          authorization:
+            url: 'https://github.com/login/oauth/authorize'
+          token:
+            url: 'https://github.com/login/oauth/access_token'
+            auth-method: CLIENT_SECRET_POST
+    endpoints:
+      logout:
+        get-allowed: true
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
