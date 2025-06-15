@@ -20,7 +20,7 @@ Once the server is started navigate to http://localhost:8080 in your browser and
 You can use SwaggerUI to execute REST requests by pressing the "Try it out" button.
 
 Have in mind that API endpoints are secured and will return 401 HTTP Status Code unless you've logged in with GitHub.
-This will also be case if you try to use Postman, curl or other programs without including the authorization header and its contents.
+This will also be the case if you try to use Postman, curl or other programs without including the authorization header and its contents.
 
 To stop the server press `Ctrl+C`.
 
@@ -31,8 +31,3 @@ Execute command `./mvnw package -Dpackaging=docker`
 Once the image is created you can run it by executing `docker run -p 8080:8080 cakesmanager:latest`
 
 Navigate to http://localhost:8080 in your browser.
-
-
-
-
-
